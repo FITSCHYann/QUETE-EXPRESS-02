@@ -1,9 +1,14 @@
+
 require("dotenv").config();
 const port = process.env.APP_PORT ?? 5000;
+
 
 const express = require("express");
 
 const app = express();
+
+app.use(express.json());
+
 
 
 const welcome = (req, res) => {
@@ -16,6 +21,7 @@ const movieHandlers = require("./movieHandlers");
 
 app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
+app.post("/api/movies", movieHandlers.postMovie);
 
 const userHandlers = require("./userHandlers");
 
